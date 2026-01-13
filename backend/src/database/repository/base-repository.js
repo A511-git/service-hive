@@ -15,7 +15,7 @@ class BaseRepository {
 
     async update(id, userInputs) {
         try {
-            return await this.model.findByIdAndUpdate(id, userInputs);
+            return await this.model.findByIdAndUpdate(id, userInputs, { new: true, runValidators: true });
         } catch (err) {
             throw MapMongoError(err);
         }
@@ -53,34 +53,41 @@ class BaseRepository {
         }
     }
 
-    async getAll({ filter, sort, limit, skip }) {
-        const [items, totalCount] = await Promise.all([
-            this.model.find(filter)
-                .sort(sort)
-                .skip(skip)
-                .limit(limit)
-                .lean(),
-
-            this.model.countDocuments(filter)
-        ]);
-
-        const page = Math.floor(skip / limit) + 1;
-        const totalPages = Math.ceil(totalCount / limit);
-
-        return {
-            data: items,
-            meta: {
-                count: items.length,
-                totalCount,
-                limit,
-                skip,
-                page,
-                totalPages,
-                hasNextPage: skip + limit < totalCount,
-                hasPrevPage: skip > 0
-            }
-        };
+    async getAll() {
+        try {
+            return await this.model.find();
+        } catch (err) {
+            throw MapMongoError(err);
+        }
     }
+
+    async paginate(filter = {}, options = {}) {
+        try {
+            const page = Number(options.page) || 1;
+            const limit = Number(options.limit) || 10;
+            const skip = (page - 1) * limit;
+            const sort = options.sort || { createdAt: -1 };
+
+            const [data, total] = await Promise.all([
+                this.model.find(filter).sort(sort).skip(skip).limit(limit),
+                this.model.countDocuments(filter)
+            ]);
+            return {
+                data,
+                pagination: {
+                    page,
+                    limit,
+                    totalItems: total,
+                    totalPages: Math.ceil(total / limit),
+                    hasNext: page * limit < total,
+                    hasPrev: page > 1
+                }
+            };
+        } catch (err) {
+            throw MapMongoError(err);
+        }
+    }
+
 
 }
 

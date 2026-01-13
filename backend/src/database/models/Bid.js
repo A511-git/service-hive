@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 
 const BidSchema = new mongoose.Schema(
     {
@@ -39,4 +40,5 @@ const BidSchema = new mongoose.Schema(
 );
 
 BidSchema.index({ gigId: 1, freelancerId: 1 }, { unique: true });
+BidSchema.plugin(mongoosePaginate);
 export const BidModel = mongoose.model("Bid", BidSchema);

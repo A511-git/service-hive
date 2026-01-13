@@ -17,10 +17,6 @@ class UserValidator extends BaseValidator {
     refresh(userInputs) {
         return this._parse(this.schema.refresh, userInputs);
     }
-
-    updatePassword(userInputs) {
-        return this._parse(this.schema.updatePassword, userInputs);
-    }
 }
 
 export { UserValidator }

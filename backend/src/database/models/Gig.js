@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
+
 
 const GigSchema = new mongoose.Schema(
     {
@@ -42,5 +44,5 @@ const GigSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-
+GigSchema.plugin(mongoosePaginate);
 export const GigModel = mongoose.model("Gig", GigSchema);

@@ -17,9 +17,4 @@ export const UserSchema = {
     refresh: z.object({
         token: BaseSchema.token,
     }),
-
-    updatePassword: z.object({
-        oldPassword: BaseSchema.password,
-        newPassword: BaseSchema.password,
-    }),
 };

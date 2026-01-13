@@ -11,10 +11,6 @@ class BaseService {
         return this.repository.update(id, data);
     }
 
-    async updateByProp(prop, value, data) {
-        return this.repository.updateByProp(prop, value, data);
-    }
-
     async delete(id) {
         return this.repository.delete(id);
     }
@@ -31,9 +27,14 @@ class BaseService {
         return this.repository.find(filter);
     }
 
-    async getAll(query) {
-        return this.repository.getAll(query);
+    async getAll() {
+        return this.repository.getAll();
     }
+
+    async paginate(filter, options) {
+        return this.repository.paginate(filter, options);
+    }
+
 }
 
 export { BaseService };
