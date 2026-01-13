@@ -1,0 +1,46 @@
+import mongoose from "mongoose";
+
+const GigSchema = new mongoose.Schema(
+    {
+        clientId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+            index: true,
+        },
+
+        title: {
+            type: String,
+            required: true,
+            trim: true,
+            maxlength: 200,
+        },
+
+        description: {
+            type: String,
+            required: true,
+            trim: true,
+            maxlength: 5000,
+        },
+
+        budget: {
+            type: Number,
+            required: true,
+            min: 0,
+        },
+
+        deadline: {
+            type: Date,
+            required: true,
+        },
+
+        status: {
+            type: String,
+            enum: ["open", "in_progress", "closed"],
+            default: "open",
+        },
+    },
+    { timestamps: true }
+);
+
+export const GigModel = mongoose.model("Gig", GigSchema);
