@@ -3,7 +3,7 @@ const AsyncHandler = (fn) => {
     try {
       await fn(req, res, next);
     } catch (err) {
-      throw err;
+      next(err);
     }
   };
 };

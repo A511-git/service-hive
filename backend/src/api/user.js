@@ -11,7 +11,7 @@ export const user = () => {
     const userService = new UserService();
     const userValidator = new UserValidator();
 
-    
+
     router.post("/register", AsyncHandler(async (req, res) => {
         const data = userValidator.register(req.body);
         const result = await userService.register(data);
@@ -25,23 +25,24 @@ export const user = () => {
         res.set("Authorization", `Bearer ${accessToken}`);
         res.set("Access-Control-Expose-Headers", "Authorization");
 
+        const isProd = process.env.NODE_ENV === "production";
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
-            maxAge: 30 * 24 * 60 * 60 * 1000
+            secure: isProd,
+            sameSite: isProd ? "none" : "lax",
+            maxAge: 30 * 24 * 60 * 60 * 1000,
         });
 
         res.status(200).json(new ApiResponse(200, user, "Login successful"));
     }));
 
-    router.get("/refresh", UserAuth, AsyncHandler(async (req, res) => {
+    router.get("/refresh", AsyncHandler(async (req, res) => {
         console.log(req.cookies?.refreshToken);
-        
+
         const data = userValidator.refresh({ token: req.cookies?.refreshToken });
 
         console.log(data);
-        
+
         const accessToken = await userService.refresh(data.token);
 
         res.set("Authorization", `Bearer ${accessToken}`);

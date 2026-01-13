@@ -38,7 +38,7 @@ class UserService extends BaseService {
         const accessToken = GenerateAccessToken(payload);
         const refreshToken = GenerateRefreshToken(payload);
 
-        const result = await this.repository.update(user._id, refreshToken);
+        const result = await this.repository.update(user._id, {refreshToken});
         if (!result) throw new NotFoundError('User not found');
 
         return {

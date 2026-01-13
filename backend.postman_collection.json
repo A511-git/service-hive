@@ -1,0 +1,1728 @@
+{
+	"info": {
+		"_postman_id": "ef1ab1c9-4e2c-4b27-96a5-89eb54a4b99b",
+		"name": "backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49386451",
+		"_collection_link": "https://igottempmail-838438.postman.co/workspace/72472e88-b98c-44cf-bf96-0c21e79d4197/collection/49386451-ef1ab1c9-4e2c-4b27-96a5-89eb54a4b99b?action=share&source=collection_link&creator=49386451"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"one\",\r\n  \"email\": \"one@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"one\",\r\n  \"email\": \"one@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "231"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e7-jf96O9EZZvLs5L4wEj7TKRnE9FY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 12:49:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"data\": {\n        \"email\": \"one@gmail.com\",\n        \"name\": \"one\",\n        \"_id\": \"69663f5ceb1d95de018526dc\",\n        \"createdAt\": \"2026-01-13T12:49:32.551Z\",\n        \"updatedAt\": \"2026-01-13T12:49:32.551Z\"\n    },\n    \"message\": \"User registered successfully\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "duplacate-user-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"one\",\r\n  \"email\": \"one@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-sYYIj/+cJhnll2VdQcu0V4t4tIc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 12:50:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"DUPLICATE_KEY\",\n        \"message\": \"Internal Server Error\"\n    }\n}"
+						},
+						{
+							"name": "validation-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"one\",\r\n  \"email\": \"one@gmail.com\",\r\n  \"password\": \"1234\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"93-HPBt2IGB99VhTV+3J7oBQiRBygY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 13:15:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"VALIDATION_ERROR\",\n        \"message\": \"Invalid data\",\n        \"details\": {\n            \"password\": \"Password must be at least 6 characters long\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// ===== ACCESS TOKEN (from Authorization header) =====\r",
+									"const authHeader =\r",
+									"    pm.response.headers.get(\"Authorization\") ||\r",
+									"    pm.response.headers.get(\"authorization\");\r",
+									"\r",
+									"if (authHeader && authHeader.startsWith(\"Bearer \")) {\r",
+									"    const accessToken = authHeader.replace(\"Bearer \", \"\");\r",
+									"    pm.collectionVariables.set(\"ACCESS_TOKEN\", accessToken);\r",
+									"}\r",
+									"\r",
+									"// ===== REFRESH TOKEN (from cookies) =====\r",
+									"const cookies = pm.cookies.toObject();\r",
+									"\r",
+									"if (cookies.refreshToken) {\r",
+									"    pm.collectionVariables.set(\"REFRESH_TOKEN\", cookies.refreshToken);\r",
+									"}\r",
+									"\r",
+									"\r",
+									"pm.test('Successful login returns status 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test('Response time is less than 2000ms', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type is application/json', function () {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response contains access token', function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('object');\r",
+									"    const hasAccessToken = jsonData.accessToken || jsonData.access_token || jsonData.token;\r",
+									"    pm.expect(hasAccessToken).to.exist;\r",
+									"})\r",
+									"\r",
+									"pm.test('Extract and store ACCESS_TOKEN', function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    const accessToken = jsonData.accessToken || jsonData.access_token || jsonData.token;\r",
+									"    if (accessToken) {\r",
+									"        pm.collectionVariables.set('ACCESS_TOKEN', accessToken);\r",
+									"        pm.expect(accessToken).to.be.a('string');\r",
+									"        pm.expect(accessToken.length).to.be.greaterThan(0);\r",
+									"    }\r",
+									"})\r",
+									"\r",
+									"pm.test('Extract and store REFRESH_TOKEN if provided', function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    const refreshToken = jsonData.refreshToken || jsonData.refresh_token;\r",
+									"    if (refreshToken) {\r",
+									"        pm.collectionVariables.set('REFRESH_TOKEN', refreshToken);\r",
+									"        pm.expect(refreshToken).to.be.a('string');\r",
+									"        pm.expect(refreshToken.length).to.be.greaterThan(0);\r",
+									"    }\r",
+									"})\r",
+									"\r",
+									"pm.test('Response contains user information', function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    if (jsonData.user) {\r",
+									"        pm.expect(jsonData.user).to.be.an('object');\r",
+									"        if (jsonData.user.id)\r",
+									"            pm.expect(jsonData.user.id).to.exist;\r",
+									"        if (jsonData.user.email)\r",
+									"            pm.expect(jsonData.user.email).to.be.a('string');\r",
+									"    }\r",
+									"})\r",
+									"\r",
+									"pm.test('Returns 401 for invalid credentials', function () {\r",
+									"    if (pm.response.code === 401) {\r",
+									"        const jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData).to.have.any.keys('error', 'message');\r",
+									"    }\r",
+									"})\r",
+									"\r",
+									"pm.test('Returns 400 for missing required fields', function () {\r",
+									"    if (pm.response.code === 400) {\r",
+									"        const jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData).to.have.any.keys('error', 'message', 'errors');\r",
+									"    }\r",
+									"})\r",
+									"\r",
+									"pm.test('Returns 404 for non-existent user', function () {\r",
+									"    if (pm.response.code === 404) {\r",
+									"        const jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData).to.have.any.keys('error', 'message');\r",
+									"    }\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"one@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"one@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2M2Y1Y2ViMWQ5NWRlMDE4NTI2ZGMiLCJpYXQiOjE3NjgzMDg2NzksImV4cCI6MTc2ODMxMjI3OX0.pynVovStd7bR3dI-Bwdn3uzjVjHS6p5OxUGR4Ssr0cM"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2M2Y1Y2ViMWQ5NWRlMDE4NTI2ZGMiLCJlbWFpbCI6Im9uZUBnbWFpbC5jb20iLCJuYW1lIjoib25lIiwiaWF0IjoxNzY4MzA4Njc5LCJleHAiOjE3NjkxNzI2Nzl9.fw6lpFxFe433qGlzYVh7AlXndcmyLGkaPJmCeYjjcbw; Max-Age=2592000; Path=/; Expires=Thu, 12 Feb 2026 12:51:19 GMT; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "219"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"db-XXCw2ORod6TIyQyykRT7K2duFYk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 12:51:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"_id\": \"69663f5ceb1d95de018526dc\",\n        \"email\": \"one@gmail.com\",\n        \"name\": \"one\",\n        \"createdAt\": \"2026-01-13T12:49:32.551Z\",\n        \"updatedAt\": \"2026-01-13T12:49:32.551Z\"\n    },\n    \"message\": \"Login successful\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "wrong-password-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"one@gmail.com\",\r\n  \"password\": \"1234567\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-fWPFlN76W7aFUMe0zv/w6vTHuq0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 12:58:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"UNAUTHORIZED\",\n        \"message\": \"Invalid credentials\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "refresh",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/auth/refresh",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2M2Y1Y2ViMWQ5NWRlMDE4NTI2ZGMiLCJpYXQiOjE3NjgzMTAyOTksImV4cCI6MTc2ODMxMzg5OX0.-LubLXr-3v8AhLczk_W4Qs08GSrQsZvSuifuXO33ygg"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 13:18:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "me",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "me",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/me",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "218"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"da-3Ji2XGXmVl+ioVgPLSx3X5kePaA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 13:17:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"_id\": \"69663f5ceb1d95de018526dc\",\n        \"email\": \"one@gmail.com\",\n        \"name\": \"one\",\n        \"createdAt\": \"2026-01-13T12:49:32.551Z\",\n        \"updatedAt\": \"2026-01-13T13:17:46.686Z\"\n    },\n    \"message\": \"Profile fetched\",\n    \"success\": true\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "gigs",
+			"item": [
+				{
+					"name": "get-gigs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/gigs?search=page",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"gigs"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "page"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "not-found-error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/gigs?search=dev&page&limit",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"gigs"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "dev"
+										},
+										{
+											"key": "page",
+											"value": null
+										},
+										{
+											"key": "limit",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48-6b4sZyXW5tNq7gny0dOwsc7N+bA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 13:25:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"NOT_FOUND\",\n        \"message\": \"No gigs found\"\n    }\n}"
+						},
+						{
+							"name": "all-gigs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/gigs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"gigs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "503"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f7-qY1h71X5xkMZ4kOofxz8DqKoxUs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 13:57:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"data\": [\n            {\n                \"_id\": \"69664843c9fb14315c633cd9\",\n                \"clientId\": \"69663f5ceb1d95de018526dc\",\n                \"title\": \"Build a landing page\",\n                \"description\": \"Need a responsive landing page with Tailwind and React.\",\n                \"budget\": 2500,\n                \"deadline\": \"2026-02-01T00:00:00.000Z\",\n                \"status\": \"open\",\n                \"createdAt\": \"2026-01-13T13:27:31.235Z\",\n                \"updatedAt\": \"2026-01-13T13:27:31.235Z\",\n                \"__v\": 0\n            }\n        ],\n        \"pagination\": {\n            \"page\": 1,\n            \"limit\": 10,\n            \"totalItems\": 1,\n            \"totalPages\": 1,\n            \"hasNext\": false,\n            \"hasPrev\": false\n        }\n    },\n    \"message\": \"Gigs fetched\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "filter-gigs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/gigs?search=page",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"gigs"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "page"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "503"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f7-qY1h71X5xkMZ4kOofxz8DqKoxUs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 13:58:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"data\": [\n            {\n                \"_id\": \"69664843c9fb14315c633cd9\",\n                \"clientId\": \"69663f5ceb1d95de018526dc\",\n                \"title\": \"Build a landing page\",\n                \"description\": \"Need a responsive landing page with Tailwind and React.\",\n                \"budget\": 2500,\n                \"deadline\": \"2026-02-01T00:00:00.000Z\",\n                \"status\": \"open\",\n                \"createdAt\": \"2026-01-13T13:27:31.235Z\",\n                \"updatedAt\": \"2026-01-13T13:27:31.235Z\",\n                \"__v\": 0\n            }\n        ],\n        \"pagination\": {\n            \"page\": 1,\n            \"limit\": 10,\n            \"totalItems\": 1,\n            \"totalPages\": 1,\n            \"hasNext\": false,\n            \"hasPrev\": false\n        }\n    },\n    \"message\": \"Gigs fetched\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "create-gigs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Build a landing page\",\r\n  \"description\": \"Need a responsive landing page with Tailwind and React.\",\r\n  \"budget\": 2500,\r\n  \"deadline\": \"2026-02-01\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/gigs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"gigs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create-gigs",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Build a landing page\",\r\n  \"description\": \"Need a responsive landing page with Tailwind and React.\",\r\n  \"budget\": 2500,\r\n  \"deadline\": \"2026-02-01\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/gigs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"gigs"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "394"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18a-LRiBh5PIGWroNpP//si5DhwlaJ4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 13:27:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"data\": {\n        \"clientId\": \"69663f5ceb1d95de018526dc\",\n        \"title\": \"Build a landing page\",\n        \"description\": \"Need a responsive landing page with Tailwind and React.\",\n        \"budget\": 2500,\n        \"deadline\": \"2026-02-01T00:00:00.000Z\",\n        \"status\": \"open\",\n        \"_id\": \"69664843c9fb14315c633cd9\",\n        \"createdAt\": \"2026-01-13T13:27:31.235Z\",\n        \"updatedAt\": \"2026-01-13T13:27:31.235Z\",\n        \"__v\": 0\n    },\n    \"message\": \"Gig created\",\n    \"success\": true\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "bids",
+			"item": [
+				{
+					"name": "submit-bids",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can do.\",\r\n  \"price\": 3000\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bids",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bids"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "owner-bidding-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\r\n  \"price\": 2200\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/bids",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"bids"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-InTQRxrSQ1EWytw+gwbpTXYAxJg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 14:01:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"BAD_REQUEST\",\n        \"message\": \"Client cannot bid on their own gig\"\n    }\n}"
+						},
+						{
+							"name": "submit-bids",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\r\n  \"price\": 2200\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/bids",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"bids"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "371"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"173-AhwDkSAkorMl94uXWMRxJw4W/HQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 14:02:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"data\": {\n        \"gigId\": \"69664843c9fb14315c633cd9\",\n        \"freelancerId\": \"6966505d06a81b3f69c7add2\",\n        \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\n        \"price\": 2200,\n        \"status\": \"pending\",\n        \"_id\": \"6966508806a81b3f69c7add9\",\n        \"createdAt\": \"2026-01-13T14:02:48.826Z\",\n        \"updatedAt\": \"2026-01-13T14:02:48.826Z\",\n        \"__v\": 0\n    },\n    \"message\": \"Bid created\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "get-bids",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\r\n  \"price\": 2200\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/bids/:gig_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bids",
+								":gig_id"
+							],
+							"variable": [
+								{
+									"key": "gig_id",
+									"value": "69664843c9fb14315c633cd9"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "unAuthorized-error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\r\n  \"price\": 2200\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{base_url}}/bids/:gig_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"bids",
+										":gig_id"
+									],
+									"variable": [
+										{
+											"key": "gig_id",
+											"value": "69664843c9fb14315c633cd9"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"62-sOi+fqMuwlSvlDCJbiqXaBg2Owo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 14:09:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"UNAUTHORIZED\",\n        \"message\": \"You are not allowed to view this gig\"\n    }\n}"
+						},
+						{
+							"name": "get-bids",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\r\n  \"price\": 2200\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{base_url}}/bids/:gig_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"bids",
+										":gig_id"
+									],
+									"variable": [
+										{
+											"key": "gig_id",
+											"value": "69664843c9fb14315c633cd9"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "626"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"272-HoSLIthWWCpRBkZXx4YOpA+r9GY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 14:09:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"_id\": \"6966508806a81b3f69c7add9\",\n            \"gigId\": \"69664843c9fb14315c633cd9\",\n            \"freelancerId\": \"6966505d06a81b3f69c7add2\",\n            \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\n            \"price\": 2200,\n            \"status\": \"pending\",\n            \"createdAt\": \"2026-01-13T14:02:48.826Z\",\n            \"updatedAt\": \"2026-01-13T14:02:48.826Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"696650d806a81b3f69c7adde\",\n            \"gigId\": \"69664843c9fb14315c633cd9\",\n            \"freelancerId\": \"6966507106a81b3f69c7add4\",\n            \"message\": \"I can do.\",\n            \"price\": 3000,\n            \"status\": \"pending\",\n            \"createdAt\": \"2026-01-13T14:04:08.908Z\",\n            \"updatedAt\": \"2026-01-13T14:04:08.908Z\",\n            \"__v\": 0\n        }\n    ],\n    \"message\": \"Bids fetched\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "post-assigned-response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\r\n  \"price\": 2200\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{base_url}}/bids/:gig_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"bids",
+										":gig_id"
+									],
+									"variable": [
+										{
+											"key": "gig_id",
+											"value": "69664843c9fb14315c633cd9"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "625"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"271-XtuIj6nhx0xDwBRIQpL+fC3n8fM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 14:21:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"_id\": \"6966508806a81b3f69c7add9\",\n            \"gigId\": \"69664843c9fb14315c633cd9\",\n            \"freelancerId\": \"6966505d06a81b3f69c7add2\",\n            \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\n            \"price\": 2200,\n            \"status\": \"hired\",\n            \"createdAt\": \"2026-01-13T14:02:48.826Z\",\n            \"updatedAt\": \"2026-01-13T14:13:37.992Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"696650d806a81b3f69c7adde\",\n            \"gigId\": \"69664843c9fb14315c633cd9\",\n            \"freelancerId\": \"6966507106a81b3f69c7add4\",\n            \"message\": \"I can do.\",\n            \"price\": 3000,\n            \"status\": \"rejected\",\n            \"createdAt\": \"2026-01-13T14:04:08.908Z\",\n            \"updatedAt\": \"2026-01-13T14:13:38.093Z\",\n            \"__v\": 0\n        }\n    ],\n    \"message\": \"Bids fetched\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "hire-bids",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\r\n  \"price\": 2200\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/bids/:bidId/hire",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bids",
+								":bidId",
+								"hire"
+							],
+							"variable": [
+								{
+									"key": "bidId",
+									"value": "696650d806a81b3f69c7adde"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "hire-bids",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\r\n  \"price\": 2200\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{base_url}}/bids/:bidId/hire",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"bids",
+										":bidId",
+										"hire"
+									],
+									"variable": [
+										{
+											"key": "bidId",
+											"value": "6966508806a81b3f69c7add9"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "139"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8b-PtuzWeTKUKldEfE091NCPYCJcQ8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 14:13:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"gigId\": \"69664843c9fb14315c633cd9\",\n        \"hiredBidId\": \"6966508806a81b3f69c7add9\"\n    },\n    \"message\": \"Bid hired\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "assigned-bid-error",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"gigId\": \"69664843c9fb14315c633cd9\",\r\n  \"message\": \"I can complete this in 2 days with clean UI + responsive design.\",\r\n  \"price\": 2200\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{base_url}}/bids/:bidId/hire",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"bids",
+										":bidId",
+										"hire"
+									],
+									"variable": [
+										{
+											"key": "bidId",
+											"value": "696650d806a81b3f69c7adde"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-IQZdMDBUSDSfzcIiyg4eYPR0wKk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 14:20:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"BAD_REQUEST\",\n        \"message\": \"Gig already assigned\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"// ===== LOAD TOKENS FROM collectionVariables =====\r",
+					"const accessToken = pm.collectionVariables.get(\"ACCESS_TOKEN\");\r",
+					"const refreshToken = pm.collectionVariables.get(\"REFRESH_TOKEN\");\r",
+					"\r",
+					"// ===== SET AUTHORIZATION HEADER =====\r",
+					"if (accessToken) {\r",
+					"    pm.request.headers.upsert({\r",
+					"        key: \"Authorization\",\r",
+					"        value: `Bearer ${accessToken}`,\r",
+					"    });\r",
+					"}\r",
+					"\r",
+					"// ===== SET REFRESH TOKEN COOKIE (ONLY IF NEEDED) =====\r",
+					"if (refreshToken) {\r",
+					"    pm.request.headers.upsert({\r",
+					"        key: \"Cookie\",\r",
+					"        value: `refreshToken=${refreshToken}`,\r",
+					"    });\r",
+					"}\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ACCESS_TOKEN",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "REFRESH_TOKEN",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

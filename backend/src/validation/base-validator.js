@@ -27,9 +27,22 @@ class BaseValidator {
 
     _parse(schema, data) {
         const result = schema.strip().safeParse(data);
-        if (!result.success) throw new ValidationError("Invalid data", result.error);
+
+        if (!result.success) {
+            const fieldErrors = {};
+
+            for (const issue of result.error.issues) {
+                const field = issue.path?.[0] || "general";
+                if (!fieldErrors[field]) {
+                    fieldErrors[field] = issue.message;
+                }
+            }
+            throw new ValidationError("Invalid data", fieldErrors);
+        }
+
         return result.data;
     }
+
 }
 
 export { BaseValidator }

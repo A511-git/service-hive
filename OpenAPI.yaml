@@ -1,0 +1,737 @@
+openapi: 3.0.0
+info:
+  title: backend
+  version: 1.0.0
+  description: ""
+servers:
+  - url: "{{base_url}}"
+  - url: ""
+paths:
+  /auth/register:
+    post:
+      summary: register
+      responses:
+        "201":
+          description: register
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "231"
+            ETag:
+              schema:
+                type: string
+              example: W/"e7-jf96O9EZZvLs5L4wEj7TKRnE9FY"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 12:49:32 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+        "400":
+          description: duplacate-user-error
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "84"
+            ETag:
+              schema:
+                type: string
+              example: W/"54-sYYIj/+cJhnll2VdQcu0V4t4tIc"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 12:50:04 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: utc-millisec
+            example:
+              name: one
+              email: one@gmail.com
+              password: "12345678"
+  /auth/login:
+    post:
+      summary: login
+      responses:
+        "200":
+          description: login
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Authorization:
+              schema:
+                type: string
+              example: >-
+                Bearer
+                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2M2Y1Y2ViMWQ5NWRlMDE4NTI2ZGMiLCJpYXQiOjE3NjgzMDg2NzksImV4cCI6MTc2ODMxMjI3OX0.pynVovStd7bR3dI-Bwdn3uzjVjHS6p5OxUGR4Ssr0cM
+            Set-Cookie:
+              schema:
+                type: string
+              example: >-
+                refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2M2Y1Y2ViMWQ5NWRlMDE4NTI2ZGMiLCJlbWFpbCI6Im9uZUBnbWFpbC5jb20iLCJuYW1lIjoib25lIiwiaWF0IjoxNzY4MzA4Njc5LCJleHAiOjE3NjkxNzI2Nzl9.fw6lpFxFe433qGlzYVh7AlXndcmyLGkaPJmCeYjjcbw;
+                Max-Age=2592000; Path=/; Expires=Thu, 12 Feb 2026 12:51:19 GMT;
+                HttpOnly; SameSite=Lax
+            Content-Length:
+              schema:
+                type: integer
+              example: "219"
+            ETag:
+              schema:
+                type: string
+              example: W/"db-XXCw2ORod6TIyQyykRT7K2duFYk"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 12:51:19 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+        "403":
+          description: wrong-password-error
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "81"
+            ETag:
+              schema:
+                type: string
+              example: W/"51-fWPFlN76W7aFUMe0zv/w6vTHuq0"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 12:58:47 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: utc-millisec
+            example:
+              email: one@gmail.com
+              password: "12345678"
+  /auth/refresh:
+    get:
+      summary: refresh
+      responses:
+        "200":
+          description: refresh
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Authorization:
+              schema:
+                type: string
+              example: >-
+                Bearer
+                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2M2Y1Y2ViMWQ5NWRlMDE4NTI2ZGMiLCJpYXQiOjE3NjgzMTAyOTksImV4cCI6MTc2ODMxMzg5OX0.-LubLXr-3v8AhLczk_W4Qs08GSrQsZvSuifuXO33ygg
+            Content-Length:
+              schema:
+                type: integer
+              example: "16"
+            ETag:
+              schema:
+                type: string
+              example: W/"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 13:18:19 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+      tags:
+        - auth
+  /auth/me:
+    get:
+      summary: me
+      responses:
+        "200":
+          description: me
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "218"
+            ETag:
+              schema:
+                type: string
+              example: W/"da-3Ji2XGXmVl+ioVgPLSx3X5kePaA"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 13:17:59 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+      tags:
+        - auth
+  /gigs:
+    get:
+      summary: get
+      parameters:
+        - name: search
+          in: query
+          required: false
+          deprecated: false
+          schema: {}
+          example: page
+      responses:
+        "200":
+          description: all-gigs
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "503"
+            ETag:
+              schema:
+                type: string
+              example: W/"1f7-qY1h71X5xkMZ4kOofxz8DqKoxUs"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 13:57:42 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+        "404":
+          description: not-found-error
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "72"
+            ETag:
+              schema:
+                type: string
+              example: W/"48-6b4sZyXW5tNq7gny0dOwsc7N+bA"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 13:25:50 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+      tags:
+        - gigs
+  /:
+    get:
+      summary: create-gig
+      responses:
+        "201":
+          description: create-gig
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "394"
+            ETag:
+              schema:
+                type: string
+              example: W/"18a-LRiBh5PIGWroNpP//si5DhwlaJ4"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 13:27:31 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+      tags:
+        - gigs
+  /bids:
+    post:
+      summary: submit-bid
+      responses:
+        "201":
+          description: submit-bid
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "371"
+            ETag:
+              schema:
+                type: string
+              example: W/"173-AhwDkSAkorMl94uXWMRxJw4W/HQ"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 14:02:48 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+        "400":
+          description: owner-bidding-error
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "95"
+            ETag:
+              schema:
+                type: string
+              example: W/"5f-InTQRxrSQ1EWytw+gwbpTXYAxJg"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 14:01:10 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+      tags:
+        - bids
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                gigId:
+                  type: string
+                message:
+                  type: string
+                price:
+                  type: integer
+            example:
+              gigId: 69664843c9fb14315c633cd9
+              message: I can complete this in 2 days with clean UI + responsive design.
+              price: 2200
+  /bids/{gig_id}:
+    get:
+      summary: get-bids
+      responses:
+        "200":
+          description: get-bids
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "626"
+            ETag:
+              schema:
+                type: string
+              example: W/"272-HoSLIthWWCpRBkZXx4YOpA+r9GY"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 14:09:54 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+        "403":
+          description: unAuthorized-error
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "98"
+            ETag:
+              schema:
+                type: string
+              example: W/"62-sOi+fqMuwlSvlDCJbiqXaBg2Owo"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 14:09:14 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+      tags:
+        - bids
+    parameters:
+      - name: gig_id
+        in: path
+        required: true
+        deprecated: false
+        schema: {}
+        example: 69664843c9fb14315c633cd9
+  /bids/{bidId}/hire:
+    patch:
+      summary: hire-bid
+      responses:
+        "200":
+          description: hire-bid
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "139"
+            ETag:
+              schema:
+                type: string
+              example: W/"8b-PtuzWeTKUKldEfE091NCPYCJcQ8"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 14:13:38 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+        "400":
+          description: assigned-bid-error
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Vary:
+              schema:
+                type: string
+              example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: "true"
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Authorization
+            Content-Length:
+              schema:
+                type: integer
+              example: "81"
+            ETag:
+              schema:
+                type: string
+              example: W/"51-IQZdMDBUSDSfzcIiyg4eYPR0wKk"
+            Date:
+              schema:
+                type: string
+              example: Tue, 13 Jan 2026 14:20:16 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+      tags:
+        - bids
+    parameters:
+      - name: bidId
+        in: path
+        required: true
+        deprecated: false
+        schema: {}
+        example: 696650d806a81b3f69c7adde

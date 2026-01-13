@@ -11,6 +11,8 @@
 # Temporary files
 *.tmp
 *~
+collect-code.js
+CODE.md
 
 *.bak
 # Environment files (containing secrets, API keys, credentials)

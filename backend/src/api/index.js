@@ -1,4 +1,6 @@
-import {user} from "./user.js"
+import { user } from "./user.js";
+import { gig } from "./gig.js";
+import { bid } from "./bid.js";
 import { Router } from "express";
 
 export const api = () => {
@@ -6,8 +8,11 @@ export const api = () => {
 
     router.get("/ping", (req, res) => {
         res.send("pong");
-    })
-    router.use("/auth", user() );
+    });
+
+    router.use("/auth", user());
+    router.use("/gigs", gig());
+    router.use("/bids", bid());
 
     return router;
 };

@@ -1,2 +1,3 @@
-export * from "./user-validator.js"
-export * from "./address-validator.js"
+export * from "./user-validator.js";
+export * from "./gig-validator.js";
+export * from "./bid-validator.js";
