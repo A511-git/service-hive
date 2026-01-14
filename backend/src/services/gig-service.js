@@ -48,7 +48,7 @@ class GigService extends BaseService {
         });
         console.log(JSON.stringify(result));
         
-        if(!result?.pagination?.totalItems) throw new NotFoundError("No gigs found");
+        // if(!result?.pagination?.totalItems) throw new NotFoundError("No gigs found");
         return result;
     }
 

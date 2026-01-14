@@ -1,12 +1,20 @@
 import mongoose from "mongoose";
 import { BaseRepository } from "./base-repository.js";
-import { BidModel, GigModel } from "../models/index.js";
+import { BidModel, GigModel, UserModel } from "../models/index.js";
 import { BadRequestError, NotFoundError, UnauthorizedError } from "../../utils/app-errors.js";
 import { MapMongoError } from "../../utils/map-mongo-error.js";
 
 class BidRepository extends BaseRepository {
     constructor() {
         super(BidModel);
+    }
+
+    async find(filter) {
+        try {
+            return await this.model.find(filter).populate("freelancerId");
+        } catch (error) {
+            throw MapMongoError(error);
+        }
     }
 
     async hire({ bidId, userId }) {
@@ -27,7 +35,7 @@ class BidRepository extends BaseRepository {
             if (gig.status !== "open")
                 throw new BadRequestError("Gig already assigned");
 
-            gig.status = "in_progress";
+            gig.status = "assigned";
             await gig.save({ session });
 
             bid.status = "hired";
@@ -51,7 +59,7 @@ class BidRepository extends BaseRepository {
                 err instanceof UnauthorizedError ||
                 err instanceof BadRequestError
             ) throw err;
-            
+
             throw MapMongoError(err);
         }
     }

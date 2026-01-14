@@ -21,8 +21,8 @@ export const bid = () => {
     }));
 
     router.get("/:gigId", UserAuth, AsyncHandler(async (req, res) => {
-        const data = bidValidator.getAll({ gigId: req.params.gigId });
-        const result = await bidService.getAll({
+        const data = bidValidator.find({ gigId: req.params.gigId });
+        const result = await bidService.find({
             gigId: data.gigId,
             userId: req.user._id,
         });

@@ -1,0 +1,42 @@
+services:
+  mongo_db:
+    image: mongo:7
+    container_name: mongo_db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: servicehive_backend
+    restart: always
+    ports:
+      - "8001:8001"
+    environment:
+      PORT: 8001
+      DB_URI: mongodb://mongo_db:27017/servicehive
+      ACCESS_TOKEN_SECRET: your_access_secret
+      REFRESH_TOKEN_SECRET: your_refresh_secret
+      ACCESS_TOKEN_EXPIRY: 15m
+      REFRESH_TOKEN_EXPIRY: 30d
+      NODE_ENV: production
+    depends_on:
+      - mongo_db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: servicehive_frontend
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:

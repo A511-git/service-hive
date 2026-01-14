@@ -38,7 +38,7 @@ const GigSchema = new mongoose.Schema(
 
         status: {
             type: String,
-            enum: ["open", "in_progress", "closed"],
+            enum: ["open", "assigned"],
             default: "open",
         },
     },

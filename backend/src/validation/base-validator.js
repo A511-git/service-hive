@@ -25,6 +25,11 @@ class BaseValidator {
         return this._parse(this.schema.getByProp, userInputs);
     }
 
+    find(userInputs) {
+        return this._parse(this.schema.find, userInputs);
+    }
+
+
     _parse(schema, data) {
         const result = schema.strip().safeParse(data);
 

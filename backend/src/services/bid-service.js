@@ -28,7 +28,7 @@ class BidService extends BaseService {
         return super.create(payload);
     }
 
-    async getAll(userInputs) {
+    async find(userInputs) {
         const gig = await this.gigRepo.getById(userInputs.gigId);
         if (!gig) throw new NotFoundError("Gig not found");
         if (String(gig.clientId) !== String(userInputs.userId))

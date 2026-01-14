@@ -7,7 +7,7 @@ export const BidSchema = {
         price: z.number().min(0),
     }),
 
-    getAll: z.object({
+    find: z.object({
         gigId: z.string().min(1),
     }),
 
