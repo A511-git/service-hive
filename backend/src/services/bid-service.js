@@ -33,7 +33,7 @@ class BidService extends BaseService {
         if (!gig) throw new NotFoundError("Gig not found");
         if (String(gig.clientId) !== String(userInputs.userId))
             throw new UnauthorizedError("You are not allowed to view this gig");
-        return super.find({ gigId: userInputs.gigId });
+        return super.find({ gigId: userInputs.gigId,  });
     }
 
     async hire(userInputs) {

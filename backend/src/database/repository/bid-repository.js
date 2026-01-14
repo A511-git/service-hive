@@ -19,7 +19,6 @@ class BidRepository extends BaseRepository {
 
     async hire({ bidId, userId }) {
         const session = await mongoose.startSession();
-
         try {
             session.startTransaction();
 
